@@ -1,6 +1,7 @@
 package com.davy.poc.controller;
 
 import com.davy.poc.entity.Department;
+import com.davy.poc.error.DeparmentNotFoundException;
 import com.davy.poc.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/department/{id}")
-    public Department getDepartment(@PathVariable("id") Long id) {
+    public Department getDepartment(@PathVariable("id") Long id) throws DeparmentNotFoundException {
 
         return departmentService.getDepartment(id);
     }

@@ -1,12 +1,14 @@
 package com.davy.poc.service;
 
 import com.davy.poc.entity.Department;
+import com.davy.poc.error.DeparmentNotFoundException;
 import com.davy.poc.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
@@ -25,8 +27,14 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public Department getDepartment(Long id) {
-        return departmentRepository.findById(id).get();
+    public Department getDepartment(Long id) throws DeparmentNotFoundException {
+        Optional<Department> department = departmentRepository.findById(id);
+
+        if(!department.isPresent()){
+            throw new DeparmentNotFoundException("Department Not found");
+        }
+
+        return department.get();
     }
 
     @Override
