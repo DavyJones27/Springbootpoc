@@ -1,0 +1,58 @@
+spring:
+  profiles:
+    active: qa
+
+---
+
+
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: DavyJones27#
+    url: jdbc:mysql://localhost:3306/photo_app
+    username: davy
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+some:
+  config: dev
+
+---
+
+
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: DavyJones27#
+    url: jdbc:mysql://localhost:3306/photo_app
+    username: davy
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+some:
+  config: qa
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: DavyJones27#
+    url: jdbc:mysql://localhost:3306/photo_app
+    username: davy
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+some:
+  config: prod
